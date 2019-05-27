@@ -1,9 +1,6 @@
 package com.feevale.portalvagas.controllers;
 
 import com.feevale.portalvagas.entities.Usuario;
-import com.feevale.portalvagas.services.SecurityService;
-import com.feevale.portalvagas.services.UserService;
-import com.feevale.portalvagas.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,14 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class UsuarioController {
 
-    @Autowired
-    private UserService userService;
 
-    @Autowired
-    private SecurityService securityService;
-
-    @Autowired
-    private UserValidator userValidator;
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -33,15 +23,13 @@ public class UsuarioController {
 
     @PostMapping("/registration")
     public String registration(@ModelAttribute("userForm") Usuario userForm, BindingResult bindingResult) {
-        userValidator.validate(userForm, bindingResult);
+        //userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
 
-        userService.save(userForm);
-
-        securityService.autoLogin(userForm.getUsername(), userForm.getsenhaConfirmada());
+        //securityService.autoLogin(userForm.getUsername(), userForm.getsenhaConfirmada());
 
         return "redirect:/welcome";
     }
@@ -55,10 +43,5 @@ public class UsuarioController {
             model.addAttribute("message", "You have been logged out successfully.");
 
         return "login";
-    }
-
-    @GetMapping({"/", "/welcome"})
-    public String welcome(Model model) {
-        return "welcome";
     }
 }

@@ -18,9 +18,6 @@ public class Usuario {
     @Transient
     private String senhaConfirmada;
 
-    @ManyToMany
-    private Set<Role> papeis;
-
     public Usuario() {
     }
 
@@ -56,11 +53,5 @@ public class Usuario {
         this.senhaConfirmada = senhaConfirmada;
     }
 
-    public Set<Role> getPapeis() {
-        return papeis;
-    }
-
-    public void setPapeis(Set<Role> papeis) {
-        this.papeis = papeis;
-    }
+    
 }
