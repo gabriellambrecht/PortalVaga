@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Atualiza Vaga</title>
+    <script src="/webjars/jquery/3.4.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+</head>
+<body>
+    <nav class="navbar navbar-expand navbar-dark bg-dark navbar-fixed-top">
+        <a class="navbar-brand" href="#">Portal Vagas e Curriculo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vagas">Vagas</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="main" class="container-fluid">
+        <form action="#" th:action="@{/vagas/atualiza/{id}(id=${vaga.codigo})}" th:object="${vaga}" th:method="post">
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="descricao">Descricao</label>
+                    <input type="text" class="form-control" th:field="*{descricao}" id="descricao" placeholder="Descricao">
+                    <span th:if="${#fields.hasErrors('descricao')}" th:errors="*{descricao}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="quantidade">Quantidade</label>
+                    <input type="text" class="form-control" th:field="*{quantidade}" id="quantidade" placeholder="Quantidade">
+                    <a href="javascript:incrementa()" class="btn btn-primary">+</a>
+                    <a href="javascript:decrementa()" class="btn btn-primary">-</a>
+                    <span th:if="${#fields.hasErrors('quantidade')}" th:errors="*{quantidade}"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="requisitos">Requisitos</label>
+                    <textarea th:field="*{requisitos}" class="form-control" id="requisitos" rows="3"></textarea>
+                </div>
+            </div>
+            <hr />
+            <div id="actions" class="row">
+                <div class="col-md-12">
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                    <a href="/vagas" class="btn btn-default">Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function incrementa() {
+            var qtd = document.getElementById("quantidade");
+            qtd.value++;
+        }
+        function decrementa() {
+            var qtd = document.getElementById("quantidade");
+            qtd.value--;
+        }
+    </script>
+
+</body>
+</html>
