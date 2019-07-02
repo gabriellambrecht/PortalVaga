@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Vagas</title>
+    <script src="/webjars/jquery/3.4.0/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet"
+          href="/webjars/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand navbar-dark bg-dark navbar-fixed-top">
+    <a class="navbar-brand" href="#">Portal Vagas e Curriculo</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="vagas">Vagas</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="logout">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<div id="main" class="container-fluid">
+    <h2 class="my-3">Vagas</h2>
+    <table class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descricao</th>
+            <th>Quantidade</th>
+            <th>Requisitos</th>
+            <th>Candidatos</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="vaga : ${vagas}">
+            <td th:text="${vaga.codigo}"></td>
+            <td th:text="${vaga.descricao}"></td>
+            <td th:text="${vaga.quantidade}"></td>
+            <td th:text="${vaga.requisitos}"></td>
+            <td>
+                <a th:href="@{/vagas/candidatos/{id}(id=${vaga.codigo})}" class="btn btn-primary">
+                    <i class="fas fa-user-friends ml-2"></i>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/vagas/atualiza/{id}(id=${vaga.codigo})}" class="btn btn-primary">
+                    <i class="fas fa-user-edit ml-2"></i>
+                </a>
+            </td>
+            <td>
+                <a th:href="@{/vagas/delete/{id}(id=${vaga.codigo})}" class="btn btn-primary"  th:method="delete">
+                    <i class="fas fa-user-times ml-2"></i>
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-md-6">
+            <p class="my-5"><a href="/vagas/adiciona" class="btn btn-primary"><i class="fas fa-user-plus ml-2"></i></a></p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

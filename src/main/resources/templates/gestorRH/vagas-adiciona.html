@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Atualiza Vaga</title>
+    <title>Adiciona Vaga</title>
     <script src="/webjars/jquery/3.4.0/jquery.min.js"></script>
     <script src="/webjars/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet"
@@ -22,11 +22,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="vagas">Vagas</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout">Logout</a>
+                </li>
             </ul>
         </div>
     </nav>
     <div id="main" class="container-fluid">
-        <form action="#" th:action="@{/vagas/atualiza/{id}(id=${vaga.codigo})}" th:object="${vaga}" th:method="post">
+        <h3 class="page-header">Adicionar vaga</h3>
+        <form action="#" th:action="@{/vagas}" th:object="${vaga}" th:method="post">
             <div class="row">
                 <div class="form-group col-md-4">
                     <label for="descricao">Descricao</label>
@@ -59,16 +63,16 @@
         </form>
     </div>
 
-    <script>
-        function incrementa() {
-            var qtd = document.getElementById("quantidade");
-            qtd.value++;
-        }
-        function decrementa() {
-            var qtd = document.getElementById("quantidade");
-            qtd.value--;
-        }
-    </script>
+<script>
+    function incrementa() {
+        var qtd = document.getElementById("quantidade");
+        qtd.value++;
+    }
+    function decrementa() {
+        var qtd = document.getElementById("quantidade");
+        qtd.value--;
+    }
+</script>
 
 </body>
 </html>

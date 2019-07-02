@@ -21,32 +21,22 @@ public class VagaController2 {
         this.vagaRepository = vagaRepository;
     }
 
-    @GetMapping("/")
-    public String index() {
-        return "home";
-    }
-
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
-
     @GetMapping("/vagas")
     public String vagas(Model model, Pageable pageable) {
         model.addAttribute("vagas", vagaRepository.findAll(pageable));
-        return "vagas";
+        return "gestorRH/vagas";
     }
 
     @GetMapping("/vagas/adiciona")
     public String adicionaVagaPagina(Model model) {
         model.addAttribute("vaga", new Vaga());
-        return "vagas-adiciona";
+        return "gestorRH/vagas-adiciona";
     }
 
     @PostMapping("/vagas")
     public String adicionaVaga(@Valid Vaga vaga, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "add-vaga";
+            return "gestorRH/add-vaga";
         }
         vagaRepository.save(vaga);
         return "redirect:/vagas";
@@ -57,13 +47,13 @@ public class VagaController2 {
         Vaga vaga = vagaRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Codigo invalida de vaga:" + id));
         model.addAttribute("vaga", vaga);
-        return "vagas-atualiza";
+        return "gestorRH/vagas-atualiza";
     }
 
     @PostMapping("/vagas/atualiza/{id}")
     public String atualizaVaga(@Valid Vaga vaga, @PathVariable long id, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "update-vaga";
+            return "gestorRH/update-vaga";
         }
         vaga.setCodigo(id);
         vagaRepository.save(vaga);

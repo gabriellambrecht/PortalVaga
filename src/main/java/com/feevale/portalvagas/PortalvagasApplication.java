@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @EnableWebSecurity
 @SpringBootApplication
-@EnableTransactionManagement
+//@EnableTransactionManagement
 public class PortalvagasApplication {
 
 	public static void main(String[] args) {

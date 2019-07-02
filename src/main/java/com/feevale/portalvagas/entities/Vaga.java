@@ -22,7 +22,11 @@ public class Vaga {
 	@Column(length = 2000)
 	private String requisitos;
 
+	@Transient
+	private boolean usuarioCandidato;
+
 	public Vaga() {
+
 	}
 
 	public Long getCodigo() {
@@ -56,4 +60,5 @@ public class Vaga {
 	public void setRequisitos(String requisitos) {
 		this.requisitos = requisitos;
 	}
+
 }
